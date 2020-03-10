@@ -34,6 +34,7 @@ class IndicatorInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
         image.stopAnimating()
+        image.setHidden(true)
     }
 
 }

@@ -51,6 +51,8 @@ enum indicatorType:CustomDebugStringConvertible, CustomStringConvertible{
             return type.XSmall_Size.rawValue + size.description
         case .XXLarge_Size(let size):
             return type.XXLarge_Size.rawValue + size.description
+        case .Small_Indicator:
+            return type.Small_Indicator.rawValue
         }
     }
     
@@ -68,6 +70,8 @@ enum indicatorType:CustomDebugStringConvertible, CustomStringConvertible{
             return type.XSmall_Size.rawValue + size.rawValue
         case .XXLarge_Size(let size):
             return type.XXLarge_Size.rawValue + size.rawValue
+        case .Small_Indicator:
+            return type.Small_Indicator.rawValue
         }
     }
     var range:NSRange{
@@ -84,9 +88,11 @@ enum indicatorType:CustomDebugStringConvertible, CustomStringConvertible{
             return size.ranges
         case .XXLarge_Size(let size):
             return size.ranges
+        case .Small_Indicator:
+            return NSMakeRange(0, 39)
         }
     }
-    static let allCase: [indicatorType] = [.Large_Size(.size_15), .Large_Size(.size_30), .Normal_Size(.size_15), .Normal_Size(.size_30), .Small_Size(.size_15), .Small_Size(.size_30), .XLarge_Size(.size_15), .XLarge_Size(.size_30), .XSmall_Size(.size_15), .XSmall_Size(.size_30), .XXLarge_Size(.size_15), .XXLarge_Size(.size_30)]
+    static let allCase: [indicatorType] = [.Small_Indicator, .Large_Size(.size_15), .Large_Size(.size_30), .Normal_Size(.size_15), .Normal_Size(.size_30), .Small_Size(.size_15), .Small_Size(.size_30), .XLarge_Size(.size_15), .XLarge_Size(.size_30), .XSmall_Size(.size_15), .XSmall_Size(.size_30), .XXLarge_Size(.size_15), .XXLarge_Size(.size_30)]
     
     case Large_Size(size)
     case Normal_Size(size)
@@ -94,40 +100,9 @@ enum indicatorType:CustomDebugStringConvertible, CustomStringConvertible{
     case XLarge_Size(size)
     case XSmall_Size(size)
     case XXLarge_Size(size)
+    case Small_Indicator
     
     enum type:String, CaseIterable{
-        var size_15: indicatorType{
-            switch self {
-            case .Large_Size:
-                return .Large_Size(.size_15)
-            case .Normal_Size:
-                return .Normal_Size(.size_15)
-            case .Small_Size:
-                return .Small_Size(.size_15)
-            case .XLarge_Size:
-                return .XLarge_Size(.size_15)
-            case .XSmall_Size:
-                return .XSmall_Size(.size_15)
-            case .XXLarge_Size:
-                return .XXLarge_Size(.size_15)
-            }
-        }
-        var size_30: indicatorType{
-            switch self {
-            case .Large_Size:
-                return .Large_Size(.size_30)
-            case .Normal_Size:
-                return .Normal_Size(.size_30)
-            case .Small_Size:
-                return .Small_Size(.size_30)
-            case .XLarge_Size:
-                return .XLarge_Size(.size_30)
-            case .XSmall_Size:
-                return .XSmall_Size(.size_30)
-            case .XXLarge_Size:
-                return .XXLarge_Size(.size_30)
-            }
-        }
         
         case Large_Size
         case Normal_Size
@@ -135,6 +110,7 @@ enum indicatorType:CustomDebugStringConvertible, CustomStringConvertible{
         case XLarge_Size
         case XSmall_Size
         case XXLarge_Size
+        case Small_Indicator
     }
     enum size:String, CustomStringConvertible{
         var description: String{
